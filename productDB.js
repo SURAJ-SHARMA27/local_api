@@ -5,8 +5,8 @@ const data=require('./products.json')
 const start= async ()=>{
     try{
     await connectDb(process.env.mongodb_url)
-    await Product.create(data)
     await Product.deleteMany()
+    await Product.create(data)
     console.log('data loaded successfully')
     }
     catch(error){
