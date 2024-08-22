@@ -3,7 +3,7 @@ const bcrypt=require("bcryptjs")
 const userSignup=async(req,res)=>{
 try{
   const {username,email,password}=req.body;
-  let user=await user.findone({email})
+  let user=await User.findOne({email})
   if(user){
     res.status(400).json({message:"user already exists"})
   }
@@ -13,12 +13,15 @@ try{
 }   
 catch(error){
     res.status(500).json({message:error})
+    console.log(error)
 }
 }
 const userSignin=async(req,res)=>{
     try{
         const {email,password}=req.body
-        const user=User.findone({email})
+
+        const user=await User.findOne({email})
+
         if(!user){
             res.status(400).json({message:"invalid credentials"})
         }
@@ -30,5 +33,7 @@ const userSignin=async(req,res)=>{
     }
     catch(error){
     res.status(500).json({message:error})
+    console.log(error)
     }
 }
+module.exports={userSignup,userSignin}

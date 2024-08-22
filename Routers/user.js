@@ -1,6 +1,7 @@
 const express=require('express')
+const bcrypt=require("bcryptjs")
 const user=express()
-const {userSignUp,userSignIn}=require('../Controller/user')
-user.route('/signup').post(userSignUp)
-user.route('/sigin').post(userSignIn)
+const {userSignup,userSignin}=require('../Controller/user')
+user.route('/signup').post(userSignup)
+user.route('/signin').post(userSignin)
 module.exports=user
